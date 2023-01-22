@@ -2,6 +2,7 @@ const form = document.querySelector('form');
 const token = document.getElementById('token')
 const user = document.getElementById('user')
 const repo = document.getElementById('repo')
+const submitBtn = document.getElementById('submit-btn')
 
 const inputContainer = document.querySelector('.imginput__container')
 const imgInput = document.querySelector('.img__input')
@@ -31,6 +32,7 @@ function insertImage(src) {
 
 function handleImageChange(e) {
   const selectedFile = e.target.files;
+  console.log(selectedFile)
   if(selectedFile.length > 0) {
     const [imageFile] = selectedFile;
     blobToBase64(imageFile).then((srcData) => {
@@ -71,6 +73,7 @@ async function uploadImageToGithub(base64Data) {
 }
 
 imgInput.addEventListener('change', handleImageChange)
+imgInput.addEventListener('dragend', handleImageChange)
 
 form.addEventListener('submit', function(e) {
   e.preventDefault();
@@ -83,16 +86,20 @@ form.addEventListener('submit', function(e) {
     return;
   }
 
+  submitBtn.value = 'Loading..'
+  submitBtn.style.cursor = 'wait'
   uploadImageToGithub(selectedImg.src.split('base64,')[1])
     .then(res => {
       let message=''
       if(res.message) {
         message = res.message;
       } else {
-        message = `Successfully Uploaded. <br /> Source url: <a href="${res.content.html_url}">${res.content.html_url}</a> <br /> Image Url: <a href="${res.content.html_url}">${res.content.download_url}</a>`
+        message = `Successfully Uploaded. <br /> Source url: <a href="${res.content.html_url}">${res.content.html_url}</a> <br /> <br /> Image Url: <a href="${res.content.download_url}">${res.content.download_url}</a>`
         console.log('response', res);
-        document.querySelector('.log').innerHTML = message
       }
+      document.querySelector('.log').innerHTML = message
+      submitBtn.value = 'Upload to Github'
+      submitBtn.style.cursor = 'pointer'
     })
     .catch(e => {
       alert('Something went wrong')
