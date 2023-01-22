@@ -15,9 +15,14 @@ body {
   justify-content: center;
 }
 
+h2 {
+  font-size: 18px;
+  margin-top: 15px;
+}
 .container {
   width: 100%;
-  max-width: 400px
+  max-width: 400px;
+  margin: 0 15px;
 }
 
 .imginput__container {
@@ -26,7 +31,7 @@ body {
   border: 1px solid #000;
   border-radius: 4px;
   box-shadow: 0 0 1px 2px #000;
-  margin-top: 25px;
+  margin-top: 15px;
   height: 160px;
   margin-bottom: 20px;
   position: relative;
@@ -114,3 +119,4 @@ form input[type="text"]:focus, .btn:active  {
 .log {
   margin-top: 10px;
 }
+
