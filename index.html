@@ -13,33 +13,39 @@
   <div class="container">
     <div class="imginput__container">
       <span>Select or Drop <br > Image </span>
-      <input class="img__input" type="file" name="" id="">
+      <input class="img__input" type="file" name="Image Input">
+
+      <div class="img__container">
+
+      </div>
     </div>
 
     <div class="input__area">
       <form>
         <div>
-          <label for="">Github Access Token</label>
-          <input type="text" name="" id="">
+          <label for="token">Github Access Token</label>
+          <input required type="text" name="token" id="token" placeholder="ghp_xxxxxxx">
         </div>
         <div>
-          <label for="">Github Repo Owner</label>
-          <input type="text" name="" id="">
+          <label for="user">Github Repo Owner</label>
+          <input required type="text" name="user" id="user">
         </div>
         <div>
-          <label for="">Github Repo name</label>
-          <input type="text" name="" id="">
+          <label for="repo">Github Repo name</label>
+          <input required type="text" name="repo" id="repo">
         </div>
 
         <input type="submit" class="btn" value="Upload to Github">
       </form>
 
-
+    </div>
+    <div>
+      <p class="log"></p>
     </div>
   </div>
 
 
 
-  <script src="/script/app.js"></script>
+  <script src="script/app.js"></script>
 </body>
 </html>
